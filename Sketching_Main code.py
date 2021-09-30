@@ -1,9 +1,9 @@
 import cv2
 
 frameWidth = 640
-frameHeight = 480    #setting frame width and height
+frameHeight = 480
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0+cv2.CAP_DSHOW)   #for instant access & display using external USB webcam
 cap.set(3, frameWidth)
 cap.set(4, frameHeight)
 cap.set(10,150)   #brightness
