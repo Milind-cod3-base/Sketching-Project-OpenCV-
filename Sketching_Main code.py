@@ -42,7 +42,7 @@ def getContours(img):    #function copied from Contour_function.py
 
         #now I need to give minimum threshold area so that it doesnt detect any noise
         if area>500:
-            cv2.drawContours(imgResult, cnt, -1, (255, 0, 0),3)  # it draws it out, but I wish to use it on copied image #first the image we need, then the contour, then index -1 because I need all the contours  #gave it blue color and gave the thickness as 3
+            #cv2.drawContours(imgResult, cnt, -1, (255, 0, 0),3)  # it draws it out, but I wish to use it on copied image #first the image we need, then the contour, then index -1 because I need all the contours  #gave it blue color and gave the thickness as 3
             #as my shapes already had area > 500 it didnt create any issues.
             #now lets calculate the curve length
             peri = cv2.arcLength(cnt,True)   #True as contours is closed
