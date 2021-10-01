@@ -8,11 +8,15 @@ cap.set(3, frameWidth)
 cap.set(4, frameHeight)
 cap.set(10,150)   #brightness
 
+myColors= [[0,107,147,35,187.255],[133,56,0,159,156,255],[57,76,0,100,255,255]]
+#three objects of different colours are masked using Tracker_color_values.py
+
+
 
 def findColor(img):              # a function is defined to find color
     imgHSV = cv2.cvtColor(imgResize, cv2.COLOR_BGR2HSV)
-    lower = np.array([h_min, s_min, v_min])
-    upper = np.array([h_max, s_max, v_max])
+    lower = np.array([h_min, s_min, v_min])   #the first three values of trackbar
+    upper = np.array([h_max, s_max, v_max])    #the last three values of trackbar
     mask = cv2.inRange(imgHSV, lower, upper)
     cv2.imshow("img", mask)               #to display the mask
 
