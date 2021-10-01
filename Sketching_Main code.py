@@ -44,7 +44,8 @@ def getContours(img):    #function copied from Contour_function.py
 
 while True:
     success, img = cap.read()
+    imgResult = img.copy()  # this will be the image which will have the final information on it.
     findColor(img,myColors)      #function is called
-    cv2.imshow("Result",img)
+    cv2.imshow("Result",imgResult)
     if cv2.waitKey(1) & 0xFF == ord('q'):           #exit frame if pressed q
         break
