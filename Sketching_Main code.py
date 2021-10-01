@@ -16,10 +16,12 @@ myColors= [[0,107,147,35,187.255],[133,56,0,159,156,255],[57,76,0,100,255,255]]
 def findColor(img, myColors):              #new argument added in the function
 
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-    lower = np.array(myColors[0][:3])   #detecting first object and its mask, high hsv values first
-    upper = np.array(myColors[0][3:])    #first object, low HSV values
-    mask = cv2.inRange(imgHSV, lower, upper)
-    cv2.imshow("img", mask)               #to display the mask
+
+    for color in myColors:                #this will loop through all colored objects' HSV
+        lower = np.array(color[:3])
+        upper = np.array(color[3:])
+        mask = cv2.inRange(imgHSV, lower, upper)
+        cv2.imshow("img", mask)
 
 while True:
     success, img = cap.read()
