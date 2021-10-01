@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 frameWidth = 640
 frameHeight = 480
@@ -8,12 +9,12 @@ cap.set(3, frameWidth)
 cap.set(4, frameHeight)
 cap.set(10,150)   #brightness
 
-myColors= [[0,107,147,35,187.255],
+myColors= [[91,107,167,179,255,255],
            [133,56,0,159,156,255],
            [57,76,0,100,255,255]]
 #three objects of different colours are masked using Tracker_color_values.py
 
-myColorValues = [[102,255,255],         #its is BGR
+myColorValues = [[255,0,0],         #its is BGR
                  [0,0,255],           #these are the color values of the type of ink you wish to use
                  [0,255,0]]
 
