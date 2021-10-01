@@ -13,7 +13,7 @@ myColors= [[0,107,147,35,187.255],[133,56,0,159,156,255],[57,76,0,100,255,255]]
 
 
 
-def findColor(img):              # a function is defined to find color
+def findColor(img, myColors):              #new argument added in the function
     imgHSV = cv2.cvtColor(imgResize, cv2.COLOR_BGR2HSV)
     lower = np.array([h_min, s_min, v_min])   #the first three values of trackbar
     upper = np.array([h_max, s_max, v_max])    #the last three values of trackbar
