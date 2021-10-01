@@ -21,11 +21,15 @@ def findColor(img, myColors):              #new argument added in the function
         lower = np.array(color[:3])
         upper = np.array(color[3:])
         mask = cv2.inRange(imgHSV, lower, upper)
-        getContours(mask)   #I am calling this function it should draw on imgResult image
+        x,y=getContours(mask)
+        cv2.circle(imgResult,(x,y),10,(255,0,0),cv2.FILLED)  #There will be a cirlce at the top.
+
 
 def getContours(img):    #function copied from Contour_function.py
     contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)      #image and retrievel method, we are using external method. RETR_EXTERNAL retrieves the extreme outer contours #next we have approximations: where we can request either all info or we can get compressed value, hence reduced value. Here I am asking for all values.
-    #contours will be saved in contours
+
+    x,y,w,h =  0,0,0,0   #if area < 500, it still needs to return somthing.
+
     for cnt in contours:
         area = cv2.contourArea(cnt)    #gets the area of those contours
 
@@ -40,6 +44,8 @@ def getContours(img):    #function copied from Contour_function.py
             #approximate the number of corner points
             approx = cv2.approxPolyDP(cnt,0.02*peri,True)   #a contour is given and then the resolution,
             x, y, w, h = cv2.boundingRect(approx)
+
+    return x + w // 2, y  # this will give us the top point and centre as well
 
 
 while True:
