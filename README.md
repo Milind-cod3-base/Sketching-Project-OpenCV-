@@ -12,6 +12,8 @@ As one can use multiple colours at the same time, this project is also useful fo
 
 ## How:
 
+NOTE: If you are using webcam embedded in laptop, in cv2.VideoCapture(0+cv2.CAP_DSHOW), replace 0+cv2.CAP_DSHOW with 0 (but if its taking a long time to open you webcam, use the former instead). If you are using external USB webcam, replace 0+cv2.CAP_DSHOW with 1.
+
 --> Open Tracker_color_values.py file 
 
 --> Run the code 
@@ -32,3 +34,10 @@ As one can use multiple colours at the same time, this project is also useful fo
 
 --> Run the code. Enjoy.
 
+## Resources:
+
+Editor - Pycharm Community
+
+Webcam - Logitech C270 HD
+
+OS - Ubuntu 20.04 LTS
