@@ -34,3 +34,10 @@ NOTE: If you are using webcam embedded in laptop, in cv2.VideoCapture(0+cv2.CAP_
 
 --> Run the code. Enjoy.
 
+## Resources:
+
+Editor - Pycharm Community
+
+Webcam - Logitech C270 HD
+
+OS - Ubuntu 20.04 LTS
