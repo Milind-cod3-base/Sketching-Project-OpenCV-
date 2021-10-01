@@ -14,7 +14,8 @@ myColors= [[0,107,147,35,187.255],[133,56,0,159,156,255],[57,76,0,100,255,255]]
 
 
 def findColor(img, myColors):              #new argument added in the function
-    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)     #bug fixed #I need to read the original webcam
+
+    imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     lower = np.array(myColors[0][:3])   #detecting first object and its mask, high hsv values first
     upper = np.array(myColors[0][3:])    #first object, low HSV values
     mask = cv2.inRange(imgHSV, lower, upper)
@@ -22,6 +23,7 @@ def findColor(img, myColors):              #new argument added in the function
 
 while True:
     success, img = cap.read()
+    findColor(img,myColors)      #function is called
     cv2.imshow("Result",img)
     if cv2.waitKey(1) & 0xFF == ord('q'):           #exit frame if pressed q
         break
