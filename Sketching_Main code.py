@@ -17,11 +17,14 @@ myColorValues = [[102,255,255],         #its is BGR
                  [0,0,255],           #these are the color values of the type of ink you wish to use
                  [0,255,0]]
 
+myPoints = []   #x,y colorId
+
 def findColor(img, myColors,myColorValues):              #new argument added in the function
 
     imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
     count=0
+    newPoints =[]
 
     for color in myColors:                #this will loop through all colored objects' HSV
         lower = np.array(color[:3])
@@ -29,7 +32,11 @@ def findColor(img, myColors,myColorValues):              #new argument added in 
         mask = cv2.inRange(imgHSV, lower, upper)
         x,y=getContours(mask)
         cv2.circle(imgResult,(x,y),10,myColorValues[count],cv2.FILLED)  #There will be a cirlce at the top.
+        if x!=0 and y!=0:
+            newPoints.append([x, y, count])
+
         count+=1
+    return newPoints
 
 def getContours(img):    #function copied from Contour_function.py
     contours, hierarchy = cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)      #image and retrievel method, we are using external method. RETR_EXTERNAL retrieves the extreme outer contours #next we have approximations: where we can request either all info or we can get compressed value, hence reduced value. Here I am asking for all values.
@@ -53,11 +60,21 @@ def getContours(img):    #function copied from Contour_function.py
 
     return x + w // 2, y  # this will give us the top point and centre as well
 
+def drawOnCanvas(myPoints, myColorValues):
+    for point in myPoints:
+        cv2.circle(imgResult, (point[0], point[1]), 10, myColorValues[point[2]], cv2.FILLED)
 
 while True:
     success, img = cap.read()
     imgResult = img.copy()  # this will be the image which will have the final information on it.
-    findColor(img,myColors, myColorValues)      #function is called
+    newPoints = findColor(img,myColors, myColorValues)      #function is called
+
+    if len(newPoints)!=0:
+        for newP in newPoints:    #we are getting separate list. We cannot put a list inside a list. It wont work that way.
+            myPoints.append(newP)
+    if len(myPoints)!=0:
+        drawOnCanvas(myPoints,myColorValues)
+
     cv2.imshow("Result",imgResult)
     if cv2.waitKey(1) & 0xFF == ord('q'):           #exit frame if pressed q
         break
